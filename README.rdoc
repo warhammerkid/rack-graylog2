@@ -1,0 +1,13 @@
+= rack-graylog2
+
+rack-graylog2 is a rack middleware and GELF logger wrapper that allows batching
+of all log calls by request rather than by each call to the logger.
+
+== Installation
+
+Add the following to your environment.rb for Rails 2.
+
+  require 'rack/graylog2'
+  config.active_record.colorize_logging = false # Disable ANSI codes
+  config.logger = ::Rack::Graylog2::Logger.new # Takes GELF::Notifier arguments 
+  config.middleware.insert_before "ActionController::Failsafe", "Rack::Graylog2", config.logger
