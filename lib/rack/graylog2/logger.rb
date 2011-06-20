@@ -37,7 +37,8 @@ module Rack::Graylog2
         message
       else
         # Standard logging
-        super(severity, *args)
+        args.unshift severity
+        super(*args)
       end
     end
   end
