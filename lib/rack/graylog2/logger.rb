@@ -1,5 +1,7 @@
 module Rack::Graylog2
   class Logger < ::GELF::Logger
+    @last_chunk_id = 0 # Populate last_chunk_id so we don't get exceptions
+
     def initialize *args
       @buffer = {}
       super(*args)
